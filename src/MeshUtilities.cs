@@ -85,4 +85,97 @@ public class MeshUtilities : MonoBehaviour {
 
         return m;
     }
+        public static void BlitQuad(Material material){
+         GL.PushMatrix();
+         GL.LoadOrtho();
+         
+         int i = 0;
+         while (i < material.passCount){
+             material.SetPass(i);
+             GL.Begin(GL.QUADS);
+             GL.Color(Color.white);
+             GL.TexCoord2(0, 0);
+             GL.Vertex3(0, 0, 0.1f);
+ 
+             GL.TexCoord2(1, 0);
+             GL.Vertex3(1, 0, 0.1f);
+ 
+             GL.TexCoord2(1, 1);
+             GL.Vertex3(1, 1, 0.1f);
+ 
+             GL.TexCoord2(0, 1);
+             GL.Vertex3(0, 1, 0.1f);
+             GL.End();
+             ++i;
+         }
+         GL.PopMatrix();
+     }
+    public static void BlitQuad(Material material, int pass){
+         GL.PushMatrix();
+         GL.LoadOrtho();
+         
+        material.SetPass(pass);
+        GL.Begin(GL.QUADS);
+        GL.Color(Color.white);
+        GL.TexCoord2(0, 0);
+        GL.Vertex3(0, 0, 0.1f);
+
+        GL.TexCoord2(1, 0);
+        GL.Vertex3(1, 0, 0.1f);
+
+        GL.TexCoord2(1, 1);
+        GL.Vertex3(1, 1, 0.1f);
+
+        GL.TexCoord2(0, 1);
+        GL.Vertex3(0, 1, 0.1f);
+        GL.End();
+        GL.PopMatrix();
+    }
+
+    public static void BlitQuadCoords(Vector2[] coords, Material material, int pass){
+        GL.PushMatrix();
+        GL.LoadOrtho();
+         
+        material.SetPass(pass);
+        GL.Begin(GL.QUADS);
+        GL.Color(Color.white);
+
+        GL.TexCoord2(0, 0);
+        GL.Vertex3(0, 0, 0.1f);
+        
+        GL.TexCoord2(1, 0);        
+        GL.Vertex3(1, 0, 0.1f);
+
+        GL.TexCoord2(1, 1);        
+        GL.Vertex3(1, 1, 0.1f);
+        
+        GL.TexCoord2(0, 1);                
+        GL.Vertex3(0, 1, 0.1f);
+
+        GL.End();
+        GL.PopMatrix();
+    }
+    public static void BlitQuadCoords2(Vector2[] coords, Material material, int pass){
+        GL.PushMatrix();
+        GL.LoadOrtho();
+         
+        material.SetPass(pass);
+        GL.Begin(GL.QUADS);
+        GL.Color(Color.white);
+
+        GL.TexCoord2(0, 0);
+        GL.Vertex3(coords[0].x, coords[0].y, 0.1f);
+        
+        GL.TexCoord2(1, 0);
+        GL.Vertex3(coords[1].x, coords[1].y, 0.1f);
+
+        GL.TexCoord2(1, 1);
+        GL.Vertex3(coords[2].x, coords[2].y, 0.1f);
+        
+        GL.TexCoord2(0, 1);
+        GL.Vertex3(coords[3].x, coords[3].y, 0.1f);
+
+        GL.End();
+        GL.PopMatrix();
+    }
 }
